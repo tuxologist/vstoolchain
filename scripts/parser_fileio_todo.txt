@@ -1,0 +1,41 @@
+../../common/platform_data.c: In function `initializeCommonFPGAInterface':
+../../common/platform_data.c:33: warning: implicit declaration of function `sdRgnAddrGet'
+../../common/platform_data.c:37: warning: comparison between pointer and integer
+../../common/platform_data.c:49: warning: comparison between pointer and integer
+../../common/platform_data.c: In function `getWowStatus':
+../../common/platform_data.c:61: warning: implicit declaration of function `printf'
+-------------------------------------------------
+
+../src/PVITask.cpp: In member function `void PVITask::onScrollTimeout(const Timer&)':
+
+-------------------------------------------------
+
+COMM
+t_interface_types.ads:192:35: info: reverse bit order in machine scalar of length 16
+u_host_interface_types.ads:192:35: info: big-endian range for component "Request" is 0 .. 5
+u_host_interface_types.ads:193:36: info: reverse bit order in machine scalar of length 16
+u_host_interface_types.ads:193:36: info: big-endian range for component "Request_Modifier" is 6 .. 15
+u_host_interface_types.ads:241:48: info: reverse bit order in machine scalar of length 16
+u_host_interface_types.ads:241:48: info: big-endian range for component "Initiate_ATD_Action" is 0 .. 0
+u_host_interface_types.ads:242:48: info: reverse bit order in machine scalar of length 16
+u_host_interface_types.ads:242:48: in
+
+HOST
+
+../src/insyscfg.c: At top level:
+
+TRP
+
+../../smp/src/inc/SharedMemPortUtils.h:77:1: warning: this is the location of the previous definition
+
+In file included from ../../common/InterPartitionComm.h:21,
+
+VECTS
+
+u_vects.adb:45:55: warning: literal "Health_Monitor" is not referenced
+[hmmm... may need to skip this one :)]
+
+---------------------------------------
+ccppc -BC:\WindRiver\gnu\3.3.2-vxworks653/x86-win32/lib/gcc-lib/ -ansi -fno-zero-initialized-in-bss -mcpu=603 -mstrict-align -G 0 -g -fvolatile -fno-builtin -Wall -mvthreads -DCPU=PPC603 -DTOOL=gnu -I
+C:/WindRiver/vxworks653-2.2/target/vThreads/h -IC:/WindRiver/vxworks653-2.2/target/val/h -DRUNTIME_CREATION_DATE=\"NODATE\"  -Wall -I../src/inc -I../../common -O   -DRUNTIME_CREATION_DATE=\"NODATE\"  
+-Wall -I../src/inc -I../../common -O -o D:/Random_Sandboxes/5.3M/5.3M_Development_17.01.0017/Development/Source/loader/obj/flashReadVerify.o -c ../src/flashReadVerify.cpp
