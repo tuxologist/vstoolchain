@@ -21,6 +21,7 @@ proc = subprocess.Popen(command, stdin=subprocess.PIPE,
                                  stdout=DEVNULL,           # send to dev/null
                                  stderr=subprocess.STDOUT, # send to /dev/null
                                  env=custom_env,
+                                 universal_newlines=True,  # comp with py 2.7-3.7
                                  shell=False)
 
 #launch Visual Studio from new Magic WindRiver Shell
