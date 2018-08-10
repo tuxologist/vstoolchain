@@ -1,14 +1,25 @@
 #!/usr/bin/perl -w
 use strict;
 
-STDOUT->autoflush(1); #improvement
+##########################
+# version 0.2
+##########################
+
+
+########################################################
+# NOTE:  
+# -- does not handle output from "make clean" scripts
+########################################################
+
+#process each incoming line immediately; don't buffer
+STDOUT->autoflush(1); 
 
 my $mydir = `cmd /c cd`;
 chomp $mydir;
 
 my $app;
 
-while (<STDIN>) #improvement
+while (<STDIN>) 
 {
 	# grab the Vxworks app currently
 	# under compilation 
@@ -71,9 +82,17 @@ while (<STDIN>) #improvement
 		# 			from ../src.../
 		print $1.unix2winpath($2)."($3) : <== (double-click to go to line)\n";
 	}
+	elsif(/^(xmlgen)(.*)(:)(.*)(domain )(.*)(,.*)$/)
+	{
+		#CASE 9
+		# Prevent Visual Studio from grabbing xmlgen errors for partitions that 
+		# have ".eh_frame" or ".gcc_except_table" sections added to that partition's app_desc file
+		# (e.g. /host/config/host_app_desc.xml)
+		print $1.$2." -> ".$4.$5.$6.$7." ***[See $6/config/$6_app_desc.xml]***\n";
+	}
 	else
 	{
-		#CASE 9:
+		#CASE 10:
 		# pass-through
 		print "$_";
 	}
@@ -93,12 +112,18 @@ sub unix2winpath
 	{
 		$fp =~ s/\//\\/g;
 		# e.g., replace '../src' with 'Host/src'
-		$fp =~ s/\.{2,2}/$app/;
+		if (defined($app))
+		{
+			$fp =~ s/\.{2,2}/$app/ 
+		}
 		
 		return "$mydir\\$fp";
 	}
 }
 
+##############
+# unused
+##############
 
 #foreach(`mount`)
 #{
